@@ -1,5 +1,5 @@
 import { UserModel } from "../db";
-const SECRET = "12345";
+import { SECRET } from "../Config";
 import jwt from 'jsonwebtoken';
 const auth = async (req:any,res:any,next:any)=>{
      const token = req.headers.token;

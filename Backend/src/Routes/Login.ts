@@ -2,7 +2,7 @@ import { model } from "mongoose";
 import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
 import { UserModel } from "../db";
-const SECRET = "12345";
+import { SECRET } from "../Config";
 const Login = async(req : any ,res:any )=>{
      const { name, email, password } = req.body;
      try{
