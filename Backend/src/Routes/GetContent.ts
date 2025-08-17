@@ -1,7 +1,7 @@
 import { ContentModel } from "../db";
 const getContent = async (req:any,res:any)=>{
     try{
-  const contents = await ContentModel.find({UserId : req.userId}).populate('UserId','username');
+  const contents = await ContentModel.find({UserId : req.userId});
         if(contents){
           res.status(200).json({
             Contents: contents

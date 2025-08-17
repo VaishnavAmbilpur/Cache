@@ -3,8 +3,12 @@ import mongoose from 'mongoose';
 import router from './Routes';
 import dotenv from 'dotenv';
 import { MONGO_URL } from './Config';
+import cors from "cors"
+import cookieParser = require('cookie-parser');
 dotenv.config();
 const app = express();
+app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 mongoose.connect(MONGO_URL)

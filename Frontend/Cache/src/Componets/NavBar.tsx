@@ -1,0 +1,77 @@
+import Logo from "../assets/logo.png"
+import { FaXTwitter } from "react-icons/fa6";
+import { FiYoutube } from "react-icons/fi";
+import { IoDocumentsOutline } from "react-icons/io5";
+import { IoLinkSharp } from "react-icons/io5";
+import { HiOutlineHashtag } from "react-icons/hi";
+import { FaUser } from "react-icons/fa6";
+import { FaHouse } from "react-icons/fa6";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import "../index.css"
+import { Link} from "react-router";
+interface NavBarProps {
+  hidden: boolean;
+}
+
+const NavBar = (props: NavBarProps) => {
+
+  return (
+    <>
+      {props.hidden && (
+        <div className='min-h-screen max-w-fit flex flex-col p-3   text-flush-orange-950'>
+          <div className="w-50 flex gap-4 mt-1 flex-wrap items-center font-Static tracking-tighterfont-extrabold text-2xl md:w-48">
+            <img className="h-8 ml-3 w-8 md:h-9 md:w-9 font-extrabold" src={Logo} alt="Logo" />
+            Cache
+          </div>
+<div className="flex flex-col mt-6 font-extralight text-flush-orange-950">
+  <div className="flex flex-row items-center gap-3 m-3">
+    <Link
+      to="/"
+      className="hover:bg-flush-orange-100 hover:text-flush-orange-900 rounded-lg p-2 transition-all duration-300 delay-75 hover:translate-y-0.5 hover:scale-100"
+    >
+      <FaHouse size={21} />
+    </Link>
+    Home
+  </div>
+  <div className="flex flex-row items-center gap-3 m-3">
+    <Link
+      to="/twitter"
+      className="hover:bg-flush-orange-100 hover:text-flush-orange-900 rounded-lg p-2 transition-all duration-300 delay-75 hover:translate-y-0.5 hover:scale-100"
+    >
+      <FaXTwitter size={21} />
+    </Link>
+    Tweets
+  </div>
+  <div className="flex flex-row items-center gap-3 m-3">
+    <Link
+      to="/Videos"
+      className="hover:bg-flush-orange-100 hover:text-flush-orange-900 rounded-lg p-2 transition-all duration-300 delay-75 hover:translate-y-0.5 hover:scale-100"
+    >
+      <FiYoutube size={21} />
+    </Link>
+    Videos
+  </div>
+ 
+  <div className="flex flex-row items-center gap-3 m-3">
+    <Link
+      to="/Links"
+      className="hover:bg-flush-orange-100 hover:text-flush-orange-900 rounded-lg p-2 transition-all duration-300 delay-75 hover:translate-y-0.5 hover:scale-100"
+    >
+      <IoLinkSharp size={21} />
+    </Link>
+    Links
+  </div>
+  
+ 
+</div>
+        </div>
+      )}
+     
+    </>
+  );
+}
+
+export default NavBar
