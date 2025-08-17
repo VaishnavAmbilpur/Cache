@@ -88,7 +88,7 @@ return (
             <p className="mb-6 text-flush-orange-800 md:text-sm">
               Please <span className="font-bold text-flush-orange-800">log in</span> to add and manage your notes, videos, and more.
             </p>
-            <div className='flex items-center'><Button varient='secondary' text="Login" onClick={() => {setshowauth(null)}} size="responsive"></Button></div>
+            <div className='flex items-center'><Button varient='secondary' text="Login" onClick={() => {setshowauth(false)}} size="responsive"></Button></div>
           </div>
         </div>
       )}
@@ -103,7 +103,7 @@ return (
         <div className="bg-flush-orange-50 rounded-lg p-6 shadow-lg relative">
           <button
             className="absolute top-2 right-2 p-4 font-extrabold text-flush-orange-950 hover:text-flush-orange-800 text-xl"
-            onClick={() =>{ setShowLogin(!null)}}
+            onClick={() =>{ setShowLogin(localStorage.getItem("token"))}}
           >
             X
           </button>
