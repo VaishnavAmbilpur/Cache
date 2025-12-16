@@ -15,7 +15,8 @@ const Form = () => {
         name:username,
         password,
       });
-      setMessage("Signup successful!");
+      if(res)setMessage("Signup successful!");
+      else setMessage("Error in Signup")
     } catch (err) {
      setMessage("Invalid Credentials");
     }
