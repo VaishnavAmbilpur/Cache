@@ -1,10 +1,7 @@
 import Logo from "../assets/Logo.png"
 import { FaXTwitter } from "react-icons/fa6";
 import { FiYoutube } from "react-icons/fi";
-import { IoDocumentsOutline } from "react-icons/io5";
 import { IoLinkSharp } from "react-icons/io5";
-import { HiOutlineHashtag } from "react-icons/hi";
-import { FaUser } from "react-icons/fa6";
 import { FaHouse } from "react-icons/fa6";
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';

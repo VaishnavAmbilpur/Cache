@@ -8,7 +8,7 @@ interface input {
 }
 
 const Topbar = (props: input) => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 412);
+  const [, setIsDesktop] = useState(window.innerWidth >= 412);
   const navigate = useNavigate();
 
   useEffect(() => {
