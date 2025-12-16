@@ -16,10 +16,9 @@ interface input {
 const MainPages = (props: input) => {
   const [showLogin, setShowLogin] = useState(localStorage.getItem("token")); 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
-  const { login, setlogin } = useContext(UserContext) as { login: boolean; setlogin: React.Dispatch<React.SetStateAction<boolean>> };
+  const { login} = useContext(UserContext) as { login: boolean; setlogin: React.Dispatch<React.SetStateAction<boolean>> };
   const [showauth,setshowauth] = useState(true)
 
-  // Refs for animation
   const navRef = useRef<HTMLDivElement>(null);
   const topbarRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -33,7 +32,6 @@ const MainPages = (props: input) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // GSAP Animations
  useEffect(() => {
   if (navRef.current) {
     gsap.fromTo(
@@ -62,11 +60,10 @@ const MainPages = (props: input) => {
 return (
    <div
     className="
-      bg-gradient-to-br from-flush-orange-100 via-flush-orange-200 to-flush-orange-300
+      bg-black
       min-w-[425px] min-h-[940px] overflow-hidden
-      md:min-h-screen md:min-w-screen flex text-flush-orange-950 flex-row
+      md:min-h-screen md:min-w-screen flex text-white flex-row
       animate-gradient-move
-      bg-[length:200%_200%]
     "
     style={{ backgroundSize: '200% 200%' }}
   >
@@ -80,13 +77,13 @@ return (
     <div ref={contentRef} className="flex-1 flex flex-col ml-16 md:ml-56">
      
       {!login && (
-        <div className="flex justify-center items-center ml-4 mt-10 text-sm">
-          <div className="bg-flush-orange-50 rounded-2xl text-xs shadow-xl md:text-md w-80  p-5 md:p-10 flex flex-col items-center md:w-96  text-center border-2 border-flush-orange-200 font-roboto">
-            <h2 className="md:text-3xl text-xl font-extrabold font-Static text-flush-orange-900 mb-4 tracking-tight">
+        <div className="flex justify-center items-center ml-4 mt-20 text-sm">
+          <div className="bg-gray-800 rounded-2xl text-xs shadow-xl md:text-md w-80  p-5 md:p-10 flex flex-col items-center md:w-96  text-center border-2 border-gray-600 font-roboto">
+            <h2 className="md:text-3xl text-xl font-extrabold font-Static text-white mb-4 tracking-tight">
               Welcome to Cache!
             </h2>
-            <p className="mb-6 text-flush-orange-800 md:text-sm">
-              Please <span className="font-bold text-flush-orange-800">log in</span> to add and manage your notes, videos, and more.
+            <p className="mb-6 text-gray-300 md:text-sm">
+              Please <span className="font-bold text-white">log in</span> to add and manage your notes, videos, and more.
             </p>
             <div className='flex items-center'><Button varient='secondary' text="Login" onClick={() => {setshowauth(false)}} size="responsive"></Button></div>
           </div>
@@ -100,10 +97,10 @@ return (
     </div>
     {showLogin==null && (
       <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-black bg-opacity-40 z-50">
-        <div className="bg-flush-orange-50 rounded-lg p-6 shadow-lg relative">
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg relative">
           <button
-            className="absolute top-2 right-2 p-4 font-extrabold text-flush-orange-950 hover:text-flush-orange-800 text-xl"
-            onClick={() =>{ setShowLogin(localStorage.getItem("token"))}}
+            className="absolute top-2 right-2 p-4 font-extrabold text-white hover:text-gray-300 text-xl"
+            onClick={() =>{ setShowLogin("hide")}}
           >
             X
           </button>
@@ -113,9 +110,9 @@ return (
     )}
     {!login && !showauth && (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-        <div className="bg-flush-orange-50 rounded-lg p-6 shadow-lg relative">
+        <div className="bg-gray-800 rounded-lg p-6 shadow-lg relative">
           <button
-            className="absolute top-2 right-2 p-4 font-extrabold text-flush-orange-950 hover:text-flush-orange-800 text-xl"
+            className="absolute top-2 right-2 p-4 font-extrabold text-white hover:text-gray-300 text-xl"
             onClick={() => setshowauth(c=>!c)}
           >
             X

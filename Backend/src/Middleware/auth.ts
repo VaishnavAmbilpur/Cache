@@ -3,7 +3,6 @@ import { SECRET } from "../Config";
 import jwt from 'jsonwebtoken';
 
 const auth = async (req: any, res: any, next: any) => {
-  // Get token from Authorization header: "Bearer <token>"
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
 

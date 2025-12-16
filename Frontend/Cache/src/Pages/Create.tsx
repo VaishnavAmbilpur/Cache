@@ -24,13 +24,11 @@ const Create: React.FC = () => {
     setLoading(true);
     setMsg(null);
     try {
-      // Prepare tags as array of strings
       const tagsArray = form.tags
         .split(",")
         .map(tag => tag.trim())
         .filter(Boolean);
 
-      // Send request with tags as array
       const token = localStorage.getItem("token");
       await axios.post(
         "http://localhost:3000/api.v1/content",
@@ -48,21 +46,21 @@ const Create: React.FC = () => {
       );
       setMsg("Content created successfully!");
       setForm({ link: "", title: "", type: "", tags: "" });
+      navigate("/");
     } catch (err: any) {
       setMsg("Error creating Content: " + (err.response?.data || err.message));
     } finally {
       setLoading(false);
-      navigate(" ")
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-flush-orange-50 via-flush-orange-100 to-flush-orange-200">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800">
       <form
         onSubmit={handleSubmit}
-        className="bg-gradient-to-br from-flush-orange-100 via-flush-orange-50 to-flush-orange-200 p-8 rounded-3xl shadow-xl w-full max-w-md flex flex-col gap-5 border border-flush-orange-200 animate-gradient-move bg-[length:200%_200%]"
+        className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-8 rounded-3xl shadow-xl w-full max-w-md flex flex-col gap-5 border border-gray-600 animate-gradient-move bg-[length:200%_200%]"
       >
-        <h2 className="text-2xl font-bold mb-2 text-flush-orange-900 tracking-tight">Create Content</h2>
+        <h2 className="text-2xl font-bold mb-2 text-white tracking-tight">Create Content</h2>
         <input
           type="text"
           name="link"
@@ -70,7 +68,7 @@ const Create: React.FC = () => {
           value={form.link}
           onChange={handleChange}
           required
-          className="border border-flush-orange-200 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-flush-orange-300 bg-flush-orange-50 text-flush-orange-900 placeholder:text-flush-orange-400 transition"
+          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white placeholder:text-gray-400 transition"
         />
         <input
           type="text"
@@ -79,14 +77,14 @@ const Create: React.FC = () => {
           value={form.title}
           onChange={handleChange}
           required
-          className="border border-flush-orange-200 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-flush-orange-300 bg-flush-orange-50 text-flush-orange-900 placeholder:text-flush-orange-400 transition"
+          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white placeholder:text-gray-400 transition"
         />
         <select
           name="type"
           value={form.type}
           onChange={handleChange}
           required
-          className="border border-flush-orange-200 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-flush-orange-300 bg-flush-orange-50 text-flush-orange-900 transition"
+          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white transition"
         >
           <option value="">Select Type</option>
           {contentTypes.map((ct) => (
@@ -99,17 +97,17 @@ const Create: React.FC = () => {
           placeholder="Tags (comma separated)"
           value={form.tags}
           onChange={handleChange}
-          className="border border-flush-orange-200 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-flush-orange-300 bg-flush-orange-50 text-flush-orange-900 placeholder:text-flush-orange-400 transition"
+          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white placeholder:text-gray-400 transition"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-gradient-to-br from-flush-orange-200 to-flush-orange-400 text-flush-orange-900 font-semibold px-4 py-2 rounded-xl hover:from-flush-orange-300 hover:to-flush-orange-500 transition-all shadow-md"
+          className="bg-gradient-to-br from-modern-blue-200 to-modern-blue-400 text-modern-blue-900 font-semibold px-4 py-2 rounded-xl hover:from-modern-blue-300 hover:to-modern-blue-500 transition-all shadow-md"
         >
           {loading ? "Creating..." : "Create"}
         </button>
         {msg && (
-          <div className="text-center text-sm mt-2 text-flush-orange-700">{msg}</div>
+          <div className="text-center text-sm mt-2 text-modern-blue-700">{msg}</div>
         )}
       </form>
     </div>

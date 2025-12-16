@@ -14,7 +14,6 @@ const variantStyle = {
     "secondary": "bg-flush-orange-950 text-flush-orange-100 hover:bg-flush-orange-200 hover:text-flush-orange-900 transition delay-150 duration-300 ease-in-out hover:translate-y-0.5 tracking-widest "
 };
 
-// Responsive size: sm on mobile, md on tablet, lg on desktop
 const sizeStyle = {
     "sm": "px-3 py-1 text-sm font-extralight rounded-lg",
     "md": "px-5 py-2 text-base font-extralight rounded-lg",

@@ -8,8 +8,6 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-// Assuming your UserContext provides both login state and a setter function
-// Adjust the type assertion to match the context value shape
    const { login, setlogin } = useContext(UserContext) as { login: boolean; setlogin: React.Dispatch<React.SetStateAction<boolean>> };
 
 const handleSubmit = async () => {
@@ -19,7 +17,6 @@ const handleSubmit = async () => {
       name: username,
       password,
     });
-    // Store token in localStorage
     if (res.data?.user?.token) {
       localStorage.setItem("token", res.data.user.token);
     }

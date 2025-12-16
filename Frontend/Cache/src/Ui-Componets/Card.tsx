@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TweetEmbed from "./Tweet";
-// Extend the Window interface to include 'twttr'
 declare global {
   interface Window {
     twttr?: any;
@@ -15,10 +14,8 @@ interface Content {
   tags: string[];
 }
 
-// Helper to detect link type
 const getLinkType = (url: string): "youtube" | "twitter" | "documents" | null => {
   if (/youtube\.com|youtu\.be/.test(url)) return "youtube";
-  // Support both twitter.com and x.com for Twitter/X links
   if (/twitter\.com|x\.com/.test(url)) return "twitter";
   if (/^https?:\/\//.test(url)) return "documents";
   return null;
@@ -34,7 +31,6 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
   const [loading, setLoading] = useState(true);
   const [tl, settl] = useState(false);
 
-  // Load Twitter widgets.js once
   useEffect(() => {
     if (!window.twttr) {
       const script = document.createElement("script");
@@ -44,7 +40,6 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
     }
   }, []);
 
-  // Re-render Twitter embeds when contents change
   useEffect(() => {
     if (window.twttr && window.twttr.widgets) {
       window.twttr.widgets.load();
@@ -72,23 +67,37 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
   }, []);
 
     if (loading) return <div>Loading...</div>;
-  if (!Array.isArray(contents) || contents.length === 0) return <div className="ml-6 mt-12">No content found.</div>;
 
-  // Filtering logic based on titleFilter
   let filteredContents = contents;
+  let contentType = "tweets, YouTube, and doc links";
   if (titleFilter === "Notes" || !titleFilter) {
-    // Show all
     filteredContents = contents;
   } else if (titleFilter === "Twitter") {
     filteredContents = contents.filter(item => item.type === "Tweet");
+    contentType = "tweets";
   } else if (titleFilter === "Videos") {
     filteredContents = contents.filter(item => item.type === "video");
+    contentType = "videos";
   } else if (titleFilter === "Links") {
     filteredContents = contents.filter(item => item.type === "documents");
+    contentType = "documents";
   }
 
+  if (filteredContents.length === 0) return (
+    <div className="flex justify-center items-center ml-4 mt-20 text-sm">
+      <div className="bg-gray-800 rounded-2xl text-xs shadow-xl md:text-md w-80 p-5 md:p-10 flex flex-col items-center md:w-96 text-center border-2 border-gray-600 font-roboto">
+        <h2 className="md:text-3xl text-xl font-extrabold font-Static text-white mb-4 tracking-tight">
+          Get Started!
+        </h2>
+        <p className="mb-6 text-gray-300 md:text-sm">
+          You can create and store links of {contentType}. To do this, click on <span className="font-bold text-white">create</span>.
+        </p>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="ml-3 grid grid-flow-row-dense grid-cols-1 md:grid-cols-4 gap-x-1 gap-y-1 justify-start overflow-hidden min-h-screen min-w-screen md:min-h-screen md:min-w-full mt-12">
+    <div className="ml-3 grid grid-flow-row-dense grid-cols-1 md:grid-cols-4 gap-x-1 gap-y-1 justify-start overflow-hidden min-w-screen md:min-w-full mt-12">
       {filteredContents.map((item, idx) => {
         const linkType = getLinkType(item.link);
         let setweet = "";
@@ -107,15 +116,15 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
           <div
             key={idx}
             className={`
-              bg-flush-orange-200
-              border border-flush-orange-200
+              bg-gray-800
+              border border-gray-600
               rounded-3xl
               p-3
               w-56 text-sm sm:w-64 md:w-72
               flex flex-col justify-between
               transition-all duration-300 ease-in-out
-              hover:border-flush-orange-400
-              hover:from-flush-orange-200 hover:to-flush-orange-400
+              hover:border-gray-500
+              hover:from-gray-800 hover:to-gray-700
               cursor-pointer
               relative
               overflow-hidden
@@ -125,16 +134,14 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
             `}
             style={{ backgroundSize: '200% 200%' }}
           >
-            {/* Decorative blurred circle */}
-            <div className="absolute -top-8 -right-8 w-20 h-20 bg-flush-orange-400 opacity-20 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -top-8 -right-8 w-20 h-20 bg-gray-600 opacity-20 rounded-full blur-2xl pointer-events-none" />
             <div>
-              <div className="font-bold text-base mb-2 group-hover:text-flush-orange-900 text-flush-orange-950 transition-colors duration-200 tracking-tight">
+              <div className="font-bold text-base mb-2 group-hover:text-white text-gray-100 transition-colors duration-200 tracking-tight">
                 {item.title}
               </div>
-              {/* YouTube Embed */}
               {linkType === "youtube" && (
                 <iframe
-                  className="w-full h-20 sm:h-24 md:h-28 mb-2 rounded-lg border border-flush-orange-300 group-hover:border-flush-orange-400 transition-all"
+                  className="w-full h-20 sm:h-24 md:h-28 mb-2 rounded-lg border border-gray-600 group-hover:border-gray-500 transition-all"
                   src={getYoutubeEmbedUrl(item.link)}
                   title={item.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -142,25 +149,23 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
                 />
               )}
 
-              {/* Twitter Embed */}
               {linkType === "twitter" && tl && setweet && (
                 <div className="animate-fade-in">
                   <TweetEmbed tweetId={setweet} />
                 </div>
               )}
               {linkType === "twitter" && !tl && (
-                <div className="animate-pulse flex items-center justify-center h-24 text-xs text-flush-orange-700">
+                <div className="animate-pulse flex items-center justify-center h-24 text-xs text-gray-400">
                   Loading
                 </div>
               )}
 
-              {/* Documents Button */}
               {linkType === "documents" && (
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 px-4 py-1 rounded-lg bg-flush-orange-300 text-flush-orange-900 font-semibold hover:bg-flush-orange-400 transition-colors text-xs shadow"
+                  className="inline-block mt-2 px-4 py-1 rounded-lg bg-gray-600 text-white font-semibold hover:bg-gray-500 transition-colors text-xs shadow"
                 >
                   Link
                 </a>
@@ -171,7 +176,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
                 {item.tags && item.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="bg-flush-orange-300 group-hover:bg-flush-orange-400 text-flush-orange-900 px-2 py-0.5 rounded-full text-[10px] font-semibold transition-colors shadow"
+                    className="bg-gray-600 group-hover:bg-gray-500 text-white px-2 py-0.5 rounded-full text-[10px] font-semibold transition-colors shadow"
                   >
                     #{tag}
                   </span>

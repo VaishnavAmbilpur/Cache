@@ -6,7 +6,6 @@ interface TweetEmbedProps {
 
 const TweetEmbed: React.FC<TweetEmbedProps> = ({ tweetId }) => {
   useEffect(() => {
-    // Load Twitter widgets script if not already loaded
     if ((window as any).twttr?.widgets) {
       (window as any).twttr.widgets.load();
     } else {
