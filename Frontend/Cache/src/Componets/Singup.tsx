@@ -10,7 +10,7 @@ const Form = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/api.v1/signup", {
+      const res = await axios.post("https://cache-14.onrender.com/api.v1/signup", {
         email,
         name:username,
         password,

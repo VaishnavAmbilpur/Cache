@@ -50,7 +50,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
     const fetchContents = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3000/api.v1/content", {
+        const res = await axios.get("https://cache-14.onrender.com/api.v1/content", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

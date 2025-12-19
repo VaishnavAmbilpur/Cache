@@ -31,7 +31,7 @@ const Create: React.FC = () => {
 
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:3000/api.v1/content",
+        "https://cache-14.onrender.com/api.v1/content",
         {
           link: form.link,
           title: form.title,
