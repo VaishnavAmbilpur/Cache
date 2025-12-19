@@ -32,7 +32,7 @@ const handleSubmit = async () => {
     <div className="flex flex-auto items-center m-10 bg-transparent bg-clip-content font-roboto font-extrabold text-flush-orange-950 bg-flush-orange-100">
       <div className="h-88 flex flex-col gap-8">
         <a className="text-3xl font-Static font-extrabold">Login</a>
-        <div className="inputBox1">
+        <div className="inputBox1 text-white">
           <input
             type="text"
             required={true}
@@ -41,7 +41,7 @@ const handleSubmit = async () => {
           />
           <span className="user">Email</span>
         </div>
-        <div className="inputBox">
+        <div className="inputBox text-white">
           <input
             type="text"
             required={true}
@@ -50,7 +50,7 @@ const handleSubmit = async () => {
           />
           <span>Username</span>
         </div>
-        <div className="inputBox">
+        <div className="inputBox text-white">
           <input
             type="password"
             required={true}
