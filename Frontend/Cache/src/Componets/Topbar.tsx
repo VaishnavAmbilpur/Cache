@@ -18,11 +18,11 @@ const Topbar = (props: input) => {
   }, [])
 
   return (
-    <div className='backdrop-blur-2xl ml-4 flex justify-between p-4 w-[348px] md:w-[500px] max-h-16 items-center text-xl font-roboto lg:w-[1290px] '>
+    <div className='backdrop-blur-2xl ml-5 flex justify-between gap-x-36 p-4 w-auto max-h-16 items-center text-xl font-roboto lg:w-[1290px] '>
         <div className="text-md font-extralight  md:text-2xl">
             {props.title}
         </div>
-        <div className="flex justify-between gap-2 font-roboto">
+        <div className="flex justify-between gap-2 font-roboto border-2 rounded-sm border-white">
           <Button
             varient="primary"
             size="responsive"

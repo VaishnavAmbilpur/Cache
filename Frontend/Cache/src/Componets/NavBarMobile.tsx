@@ -18,9 +18,9 @@ const NavBarMobile = (props: NavBarProps) => {
     <>
         {props.hidden && (
           <div className='min-h-[950px] max-w-fit flex flex-col p-3 border-2 items-center text-white'>
-            <div className="w-10 flex gap-2  flex-wrap items-center font-Static font-extrabold text-2xl md:w-60">
+            <div className="w-12 flex gap-2  flex-wrap items-center font-Static font-extrabold text-2xl md:w-60">
               <img className="ml-1 h-8 w-8 font-extrabold" src={Logo} alt="Logo" />
-              <span className="text-white">Cache</span>
+              <div className="text-white text-xl md:text-2xl">Cache</div>
             </div>
             <div className="flex flex-col mt-6 font-extralight">
     <div className="flex flex-row items-center gap-3 m-3">

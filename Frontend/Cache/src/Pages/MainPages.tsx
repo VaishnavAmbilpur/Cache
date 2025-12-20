@@ -71,7 +71,7 @@ return (
       <NavBar hidden={!isMobile} />
       <NavBarMobile hidden={isMobile} />
     </div>
-     <div ref={topbarRef} className="fixed top-0 right-0 z-40">
+     <div ref={topbarRef} className="fixed top-0 right-2 z-40">
         <Topbar title={props.title} />
       </div>
     <div ref={contentRef} className="flex-1 flex flex-col ml-16 md:ml-56">
@@ -90,7 +90,7 @@ return (
         </div>
       )}
       {login && (
-        <div className="p-4 overflow-hidden">
+        <div className="flex justify-center items-center p-4 overflow-hidden">
           <ContentCard titleFilter={props.title} />
         </div>
       )}

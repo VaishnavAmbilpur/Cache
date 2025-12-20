@@ -66,7 +66,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
     setTimeout(() => { settl(true) }, 2000);
   }, []);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="flex justify-center items-center ml-4 mt-20 text-xl">Loading...</div>;
 
   let filteredContents = contents;
   let contentType = "tweets, YouTube, and doc links";
