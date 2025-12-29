@@ -2,7 +2,8 @@ import Button from "../Ui-Componets/Button"
 import { useState, useEffect } from "react"
 import { IoCreate } from "react-icons/io5"
 import { useNavigate } from "react-router-dom"
-
+import { IoLogOut } from "react-icons/io5"
+import axios from "axios"
 interface input {
   title: String
 }
@@ -10,7 +11,15 @@ interface input {
 const Topbar = (props: input) => {
   const [, setIsDesktop] = useState(window.innerWidth >= 412);
   const navigate = useNavigate();
-
+  const LogOut = async()=>{
+      try{
+         await axios.post("https://cache-14.onrender.com/api.v1/logout")
+         localStorage.removeItem("token");
+         navigate("/login");
+      }catch{
+        console.log("Error in Logging out")
+      }
+  }
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 412);
     window.addEventListener("resize", handleResize)
@@ -22,8 +31,16 @@ const Topbar = (props: input) => {
         <div className="text-md font-extralight  md:text-2xl">
             {props.title}
         </div>
-        <div className="flex justify-between gap-2 font-roboto border-2 rounded-sm border-white">
+        <div className="flex justify-between gap-x-2 font-roboto border-2 rounded-sm border-white">
           <Button
+            varient="primary"
+            size="responsive"
+            text="Logout"
+            startIcon={<IoLogOut />}
+            onClick={() => {LogOut()}}
+          />
+          <div className="flex justify-between gap-x-2 font-roboto border-2 rounded-sm border-white">
+           <Button
             varient="primary"
             size="responsive"
             text="Create"
@@ -31,8 +48,10 @@ const Topbar = (props: input) => {
             onClick={() => navigate("/create")}
           />
           
-          
         </div>
+        </div>
+        
+       
     </div>
   )
 }

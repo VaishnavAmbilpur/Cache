@@ -8,6 +8,7 @@ declare global {
 }
 
 interface Content {
+  _id: string;
   link: string;
   title: string;
   type: string;
@@ -65,6 +66,21 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
     fetchContents();
     setTimeout(() => { settl(true) }, 2000);
   }, []);
+
+  const handleDelete = async (contentId: string) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete("https://cache-14.onrender.com/api.v1/content", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { contentId }
+      });
+      setContents(contents.filter(c => c._id !== contentId));
+    } catch (error) {
+      alert("Error deleting content");
+    }
+  };
 
     if (loading) return <div className="flex justify-center items-center ml-4 mt-20 text-xl">Loading...</div>;
 
@@ -135,6 +151,16 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
             style={{ backgroundSize: '200% 200%' }}
           >
             <div className="absolute -top-8 -right-8 w-20 h-20 bg-gray-600 opacity-20 rounded-full blur-2xl pointer-events-none" />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(item._id);
+              }}
+              className="absolute top-2 right-2 text-red-500 hover:text-red-700 text-lg"
+              title="Delete"
+            >
+              🗑️
+            </button>
             <div>
               <div className="font-bold text-base mb-2 group-hover:text-white text-gray-100 transition-colors duration-200 tracking-tight">
                 {item.title}

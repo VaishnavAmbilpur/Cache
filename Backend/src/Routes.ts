@@ -9,10 +9,12 @@ import auth from "./Middleware/auth";
 import getcontentofsharelink from "./Routes/GetContentOfShareLink";
 import CreateTag from "./Routes/AddTags";
 import getContentbyTags from "./Routes/GetContentbyTags";
+import Logout from "./Routes/Logout";
 const router = Router();
 
 router.post('/api.v1/signup',signup);
 router.post('/api.v1/login',Login);
+router.post('/api.v1/logout',Logout);
 router.post('/api.v1/content',auth,AddContent);
 router.get('/api.v1/content',auth,GetContent);
 router.delete('/api.v1/content',auth,DeleteContent);
