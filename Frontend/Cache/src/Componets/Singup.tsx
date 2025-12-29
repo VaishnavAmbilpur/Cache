@@ -2,11 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import Button from "../Ui-Componets/Button";
 import "./Signup.css";   
+import { useNavigate } from "react-router-dom";
 const Form = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -15,15 +17,19 @@ const Form = () => {
         name:username,
         password,
       });
-      if(res)setMessage("Signup successful!");
-      else setMessage("Error in Signup")
+      if(res){
+        setMessage("Signup successful!");
+        navigate("/login");
+      } else {
+        setMessage("Error in Signup");
+      }
     } catch (err) {
      setMessage("Invalid Credentials");
     }
   };
 
   return (
-    <div className="flex flex-auto items-center m-10 bg-transparent bg-clip-content  font-roboto font-extrabold text-flush-orange-950 bg-flush-orange-100">
+    <div className="flex justify-center items-center h-full w-full bg-transparent">
       <div className="h-88 flex flex-col gap-8">
         <a className="text-3xl font-Static font-extrabold">Sign Up</a>
         <div className="inputBox1 text-white">
@@ -55,6 +61,9 @@ const Form = () => {
         </div>
         <div>
           <Button varient="primary" size="md" onClick={handleSubmit} text="Enter" />
+        </div>
+        <div className="text-gray-400 text-sm">
+          Already have an account? <span className="text-blue-400 cursor-pointer" onClick={() => navigate("/login")}>Log in</span>
         </div>
         {message && <div className="font-extralight text-xl md:text-md">{message}</div>}
       </div>

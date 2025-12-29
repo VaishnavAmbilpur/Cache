@@ -1,5 +1,12 @@
-    import { createContext } from 'react';
-//@ts-ignore
-    const UserContext = createContext();
+import { createContext } from 'react';
 
-    export default UserContext;
+interface UserContextType {
+  login: boolean;
+  setlogin: React.Dispatch<React.SetStateAction<boolean>>;
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const UserContext = createContext<UserContextType | undefined>(undefined);
+
+export default UserContext;

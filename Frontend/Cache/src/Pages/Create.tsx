@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
+import UserContext from "../Global"
 
 const contentTypes = ["video", "twitter", "documents", "links"];
 
 const Create: React.FC = () => {
   const navigate = useNavigate();
+  const { token } = useContext(UserContext)!;
   const [form, setForm] = useState({
     link: "",
     title: "",
@@ -29,7 +31,6 @@ const Create: React.FC = () => {
         .map(tag => tag.trim())
         .filter(Boolean);
 
-      const token = localStorage.getItem("token");
       await axios.post(
         "https://cache-14.onrender.com/api.v1/content",
         {

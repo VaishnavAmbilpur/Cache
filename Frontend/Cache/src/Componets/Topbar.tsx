@@ -1,9 +1,9 @@
 import Button from "../Ui-Componets/Button"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { IoCreate } from "react-icons/io5"
 import { useNavigate } from "react-router-dom"
 import { IoLogOut } from "react-icons/io5"
-import axios from "axios"
+import UserContext from "../Global"
 interface input {
   title: String
 }
@@ -11,14 +11,11 @@ interface input {
 const Topbar = (props: input) => {
   const [, setIsDesktop] = useState(window.innerWidth >= 412);
   const navigate = useNavigate();
-  const LogOut = async()=>{
-      try{
-         await axios.post("https://cache-14.onrender.com/api.v1/logout")
-         localStorage.removeItem("token");
-         navigate("/login");
-      }catch{
-        console.log("Error in Logging out")
-      }
+  const { setlogin, setToken } = useContext(UserContext)!;
+  const LogOut = ()=>{
+    setlogin(false);
+    setToken("");
+    navigate("/login");
   }
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 412);

@@ -6,11 +6,14 @@ import { Route,Routes } from 'react-router-dom';
 import UserContext from "./Global"
 import { useState } from 'react';
 import Create from './Pages/Create';
+import Login from './Componets/Login';
+import Singup from './Componets/Singup';
 function App() {
-  const [login,setlogin] = useState(localStorage.getItem("token"));
+  const [login,setlogin] = useState(false);
+  const [token, setToken] = useState("");
   return (
     <>
-      <UserContext.Provider value={{login,setlogin}}>
+      <UserContext.Provider value={{login,setlogin, token, setToken}}>
         <BrowserRouter>
      <Routes>
     
@@ -40,6 +43,16 @@ function App() {
        <Route path="/create" element={
          <div className='min-h-screen min-w-screen flex-col'>
            <Create/>
+         </div>
+       } />
+       <Route path="/login" element={
+         <div className='h-screen w-full bg-black text-white flex justify-center items-center'>
+           <Login/>
+         </div>
+       } />
+       <Route path="/signup" element={
+         <div className='h-screen w-full bg-black text-white flex justify-center items-center'>
+           <Singup/>
          </div>
        } />
      </Routes>

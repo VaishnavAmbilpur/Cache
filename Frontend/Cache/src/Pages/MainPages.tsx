@@ -2,10 +2,9 @@ import NavBar from '../Componets/NavBar'
 import NavBarMobile from '../Componets/NavBarMobile'
 import { useState, useEffect, useContext, useRef } from 'react'
 import Topbar from '../Componets/Topbar'
-import Form from '../Componets/Singup'
 import UserContext from "../Global"
 import Button from '../Ui-Componets/Button'
-import Login from '../Componets/Login'
+import { useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import ContentCard from '../Ui-Componets/Card'
 
@@ -14,10 +13,9 @@ interface input {
 }
 
 const MainPages = (props: input) => {
-  const [showLogin, setShowLogin] = useState(localStorage.getItem("token")); 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const { login} = useContext(UserContext) as { login: boolean; setlogin: React.Dispatch<React.SetStateAction<boolean>> };
-  const [showauth,setshowauth] = useState(true)
+  const navigate = useNavigate();
 
   const navRef = useRef<HTMLDivElement>(null);
   const topbarRef = useRef<HTMLDivElement>(null);
@@ -85,7 +83,10 @@ return (
             <p className="mb-6 text-gray-300 md:text-sm">
               Please <span className="font-bold text-white">log in</span> to add and manage your notes, videos, and more.
             </p>
-            <div className='flex items-center'><Button varient='secondary' text="Login" onClick={() => {setshowauth(false)}} size="responsive"></Button></div>
+            <div className='flex flex-col items-center gap-4'>
+              <Button varient='secondary' text="Login" onClick={() => navigate("/login")} size="responsive" />
+              <p className="text-gray-400 text-sm">Don't have an account? <span className="text-blue-400 cursor-pointer" onClick={() => navigate("/signup")}>Sign up</span></p>
+            </div>
           </div>
         </div>
       )}
@@ -95,32 +96,6 @@ return (
         </div>
       )}
     </div>
-    {showLogin==null && (
-      <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-black bg-opacity-40 z-50">
-        <div className="bg-gray-800 rounded-lg p-6 shadow-lg relative">
-          <button
-            className="absolute top-2 right-2 p-4 font-extrabold text-white hover:text-gray-300 text-xl"
-            onClick={() =>{ setShowLogin("hide")}}
-          >
-            X
-          </button>
-          <Form/>
-        </div>
-      </div>
-    )}
-    {!login && !showauth && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-        <div className="bg-gray-800 rounded-lg p-6 shadow-lg relative">
-          <button
-            className="absolute top-2 right-2 p-4 font-extrabold text-white hover:text-gray-300 text-xl"
-            onClick={() => setshowauth(c=>!c)}
-          >
-            X
-          </button>
-          <Login/>
-        </div>
-      </div>
-    )}
   </div>
 )
 }

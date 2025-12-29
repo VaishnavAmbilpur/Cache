@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import TweetEmbed from "./Tweet";
+import UserContext from "../Global";
 declare global {
   interface Window {
     twttr?: any;
@@ -31,6 +32,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
   const [contents, setContents] = useState<Content[]>([]);
   const [loading, setLoading] = useState(true);
   const [tl, settl] = useState(false);
+  const { token } = useContext(UserContext)!;
 
   useEffect(() => {
     if (!window.twttr) {
@@ -50,7 +52,6 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const token = localStorage.getItem("token");
         const res = await axios.get("https://cache-14.onrender.com/api.v1/content", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -69,7 +70,6 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
 
   const handleDelete = async (contentId: string) => {
     try {
-      const token = localStorage.getItem("token");
       await axios.delete("https://cache-14.onrender.com/api.v1/content", {
         headers: {
           Authorization: `Bearer ${token}`,
