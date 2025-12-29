@@ -32,16 +32,16 @@ const Form = () => {
     <div className="flex justify-center items-center h-full w-full bg-transparent">
       <div className="h-88 flex flex-col gap-8">
         <a className="text-3xl font-Static font-extrabold">Sign Up</a>
-        <div className="inputBox1 text-white">
+        <div className="inputBox1">
           <input
             type="text"
             required={true}
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <span className="user">Email</span>
+          <span>Email</span>
         </div>
-        <div className="inputBox  text-white">
+        <div className="inputBox">
           <input
             type="text"
             required={true}
@@ -50,7 +50,7 @@ const Form = () => {
           />
           <span>Username</span>
         </div>
-        <div className="inputBox  text-white">
+        <div className="inputBox">
           <input
             type="password"
             required={true}

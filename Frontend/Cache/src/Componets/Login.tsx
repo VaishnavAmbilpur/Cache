@@ -9,7 +9,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-   const { login, setlogin, token, setToken } = useContext(UserContext)!;
+   const { login, setlogin, setToken } = useContext(UserContext)!;
    const navigate = useNavigate();
 
 const handleSubmit = async () => {
@@ -35,16 +35,16 @@ const handleSubmit = async () => {
     <div className="flex justify-center items-center h-full w-full bg-transparent">
       <div className="h-88 flex flex-col gap-8">
         <a className="text-3xl font-Static font-extrabold">Login</a>
-        <div className="inputBox1 text-white">
+        <div className="inputBox1">
           <input
             type="text"
             required={true}
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <span className="user">Email</span>
+          <span>Email</span>
         </div>
-        <div className="inputBox text-white">
+        <div className="inputBox">
           <input
             type="text"
             required={true}
@@ -53,7 +53,7 @@ const handleSubmit = async () => {
           />
           <span>Username</span>
         </div>
-        <div className="inputBox text-white">
+        <div className="inputBox">
           <input
             type="password"
             required={true}
