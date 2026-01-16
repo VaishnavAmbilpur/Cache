@@ -35,16 +35,21 @@
   .inputBox input,
   .inputBox1 input {
     width: 100%;
-    padding: 10px;
+    padding: 12px 16px;
     outline: none;
-    border: none;
+    border: 1px solid white;
     color: white;
     font-size: 1em;
-    background: transparent;
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
-    transition: 0.1s;
-    border-bottom-left-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  
+  .inputBox input:hover,
+  .inputBox1 input:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
   }
 
   .inputBox span,
@@ -53,15 +58,16 @@
     position: absolute;
     left: 0;
     transform: translateY(-4px);
-    margin-left: 10px;
-    padding: 10px;
+    margin-left: 16px;
+    padding: 6px 12px;
     pointer-events: none;
-    font-size: 12px;
-    color: white;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
-    transition: 0.5s;
-    letter-spacing: 3px;
-    border-radius: 8px;
+    transition: all 0.4s ease;
+    letter-spacing: 2px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.8);
   }
 
   .inputBox input:valid~span,
@@ -90,8 +96,10 @@
   .inputBox input:focus,
   .inputBox1 input:valid,
   .inputBox1 input:focus {
-    border: 2px solid white;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
   }
 
   .enter {

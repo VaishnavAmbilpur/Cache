@@ -12,7 +12,7 @@ const Form = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("https://cache-14.onrender.com/api.v1/signup", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/signup`, {
         email,
         name:username,
         password,
@@ -30,8 +30,8 @@ const Form = () => {
 
   return (
     <div className="flex justify-center items-center h-full w-full bg-transparent">
-      <div className="h-88 flex flex-col gap-8">
-        <a className="text-3xl font-Static font-extrabold">Sign Up</a>
+      <div className="h-88 flex flex-col gap-8 bg-white/10 backdrop-blur-md border border-white rounded-2xl p-10 shadow-2xl hover:bg-white/20 transition-all duration-300">
+        <a className="text-3xl font-Static font-extrabold text-white text-center">Sign Up</a>
         <div className="inputBox1">
           <input
             type="text"
@@ -62,10 +62,10 @@ const Form = () => {
         <div>
           <Button varient="primary" size="md" onClick={handleSubmit} text="Enter" />
         </div>
-        <div className="text-gray-400 text-sm">
-          Already have an account? <span className="text-blue-400 cursor-pointer" onClick={() => navigate("/login")}>Log in</span>
+        <div className="text-gray-300 text-sm text-center">
+          Already have an account? <span className="text-blue-300 cursor-pointer hover:text-blue-200 transition-colors" onClick={() => navigate("/login")}>Log in</span>
         </div>
-        {message && <div className="font-extralight text-xl md:text-md">{message}</div>}
+        {message && <div className="font-extralight text-xl md:text-md text-center text-white bg-white/10 border border-white/30 rounded-lg p-2">{message}</div>}
       </div>
     </div>
   );

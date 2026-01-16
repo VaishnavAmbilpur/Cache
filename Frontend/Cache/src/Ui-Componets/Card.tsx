@@ -52,7 +52,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const res = await axios.get("https://cache-14.onrender.com/api.v1/content", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/content`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -70,7 +70,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
 
   const handleDelete = async (contentId: string) => {
     try {
-      await axios.delete("https://cache-14.onrender.com/api.v1/content", {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/content`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -101,7 +101,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
 
   if (filteredContents.length === 0) return (
     <div className="flex justify-center items-center ml-4 mt-20 text-sm">
-      <div className="bg-gray-800 rounded-2xl text-xs shadow-xl md:text-md w-80 p-5 md:p-10 flex flex-col items-center md:w-96 text-center border-2 border-gray-600 font-roboto">
+      <div className="bg-white/10 rounded-2xl text-xs shadow-2xl md:text-md w-80 p-5 md:p-10 flex flex-col items-center md:w-96 text-center border border-white backdrop-blur-md font-roboto">
         <h2 className="md:text-3xl text-xl font-extrabold font-Static text-white mb-4 tracking-tight">
           Get Started!
         </h2>
@@ -132,23 +132,22 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
           <div
             key={idx}
             className={`
-              bg-gray-800
-              border border-gray-600
-              rounded-3xl
-              p-3
+              bg-white/10
+              border border-white
+              rounded-2xl
+              p-4
               w-56 text-sm sm:w-64 md:w-72
               flex flex-col justify-between
               transition-all duration-300 ease-in-out
-              hover:border-gray-500
-              hover:from-gray-800 hover:to-gray-700
+              hover:bg-white/20
+              hover:border-white
+              hover:shadow-2xl
               cursor-pointer
               relative
               overflow-hidden
-              animate-gradient-move
-              bg-[length:200%_200%]
+              backdrop-blur-md
               ${cardHeight}
             `}
-            style={{ backgroundSize: '200% 200%' }}
           >
             <div className="absolute -top-8 -right-8 w-20 h-20 bg-gray-600 opacity-20 rounded-full blur-2xl pointer-events-none" />
             <button
@@ -167,7 +166,7 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
               </div>
               {linkType === "youtube" && (
                 <iframe
-                  className="w-full h-20 sm:h-24 md:h-28 mb-2 rounded-lg border border-gray-600 group-hover:border-gray-500 transition-all"
+                  className="w-full h-20 sm:h-24 md:h-28 mb-2 rounded-lg border border-white/40 hover:border-white transition-all"
                   src={getYoutubeEmbedUrl(item.link)}
                   title={item.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -191,18 +190,18 @@ const ContentCard = ({ titleFilter }: { titleFilter?: string }) => {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-2 px-4 py-1 rounded-lg bg-gray-600 text-white font-semibold hover:bg-gray-500 transition-colors text-xs shadow"
+                  className="inline-block mt-2 px-4 py-1.5 rounded-lg bg-white/20 text-white font-semibold hover:bg-white/40 transition-all text-xs shadow-lg border border-white/30"
                 >
                   Link
                 </a>
               )}
             </div>
             <div>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1.5">
                 {item.tags && item.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="bg-gray-600 group-hover:bg-gray-500 text-white px-2 py-0.5 rounded-full text-[10px] font-semibold transition-colors shadow"
+                    className="bg-white/20 hover:bg-white/40 text-white px-3 py-1 rounded-full text-[10px] font-semibold transition-all shadow-lg border border-white/30"
                   >
                     #{tag}
                   </span>

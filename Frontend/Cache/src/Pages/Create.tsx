@@ -32,7 +32,7 @@ const Create: React.FC = () => {
         .filter(Boolean);
 
       await axios.post(
-        "https://cache-14.onrender.com/api.v1/content",
+        `${import.meta.env.VITE_API_URL}/content`,
         {
           link: form.link,
           title: form.title,
@@ -59,9 +59,9 @@ const Create: React.FC = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800">
       <form
         onSubmit={handleSubmit}
-        className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-8 rounded-3xl shadow-xl w-full max-w-md flex flex-col gap-5 border border-gray-600 animate-gradient-move bg-[length:200%_200%]"
+        className="bg-white/10 backdrop-blur-md border border-white p-8 rounded-2xl shadow-2xl w-full max-w-md flex flex-col gap-5 hover:bg-white/20 transition-all duration-300"
       >
-        <h2 className="text-2xl font-bold mb-2 text-white tracking-tight">Create Content</h2>
+        <h2 className="text-3xl font-bold mb-4 text-white tracking-tight">Create Content</h2>
         <input
           type="text"
           name="link"
@@ -69,7 +69,7 @@ const Create: React.FC = () => {
           value={form.link}
           onChange={handleChange}
           required
-          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white placeholder:text-gray-400 transition"
+          className="border border-white bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 text-white placeholder:text-gray-300 transition-all"
         />
         <input
           type="text"
@@ -78,14 +78,14 @@ const Create: React.FC = () => {
           value={form.title}
           onChange={handleChange}
           required
-          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white placeholder:text-gray-400 transition"
+          className="border border-white bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 text-white placeholder:text-gray-300 transition-all"
         />
         <select
           name="type"
           value={form.type}
           onChange={handleChange}
           required
-          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white transition"
+          className="border border-white bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 text-white transition-all"
         >
           <option value="">Select Type</option>
           {contentTypes.map((ct) => (
@@ -98,17 +98,17 @@ const Create: React.FC = () => {
           placeholder="Tags (comma separated)"
           value={form.tags}
           onChange={handleChange}
-          className="border border-gray-600 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white placeholder:text-gray-400 transition"
+          className="border border-white bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 text-white placeholder:text-gray-300 transition-all"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-gradient-to-br from-modern-blue-200 to-modern-blue-400 text-modern-blue-900 font-semibold px-4 py-2 rounded-xl hover:from-modern-blue-300 hover:to-modern-blue-500 transition-all shadow-md"
+          className="bg-white/20 border border-white text-white font-semibold px-4 py-3 rounded-lg hover:bg-white/40 transition-all shadow-lg backdrop-blur-md disabled:opacity-50"
         >
           {loading ? "Creating..." : "Create"}
         </button>
         {msg && (
-          <div className="text-center text-sm mt-2 text-modern-blue-700">{msg}</div>
+          <div className="text-center text-sm mt-2 text-white bg-white/10 border border-white/30 rounded-lg p-2">{msg}</div>
         )}
       </form>
     </div>

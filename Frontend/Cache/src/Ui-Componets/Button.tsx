@@ -10,15 +10,15 @@ export interface ButtonProps{
 }
 
 const variantStyle = {
-    "primary": "bg-flush-orange-200 text-flush-orange-900 hover:bg-flush-orange-950 hover:text-flush-orange-50 transition delay-150 duration-300 ease-in-out hover:translate-y-0.5 tracking-widest",
-    "secondary": "bg-flush-orange-950 text-flush-orange-100 hover:bg-flush-orange-200 hover:text-flush-orange-900 transition delay-150 duration-300 ease-in-out hover:translate-y-0.5 tracking-widest "
+    "primary": "bg-white/20 text-white border border-white backdrop-blur-md hover:bg-white/30 transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl",
+    "secondary": "bg-white/10 text-white border border-white/50 backdrop-blur-md hover:bg-white/20 hover:border-white transition-all duration-300 ease-in-out shadow-lg"
 };
 
 const sizeStyle = {
-    "sm": "px-3 py-1 text-sm font-extralight rounded-lg",
-    "md": "px-5 py-2 text-base font-extralight rounded-lg",
-    "lg": "px-6 py-3 text-lg font-extralight rounded-lg",
-    "responsive": "px-3 py-1 text-sm md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2 lg:text-md font-extralight rounded-lg"
+    "sm": "px-4 py-2 text-sm font-extralight rounded-lg",
+    "md": "px-6 py-3 text-base font-extralight rounded-lg",
+    "lg": "px-8 py-4 text-lg font-extralight rounded-lg",
+    "responsive": "px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base lg:px-6 lg:py-3 lg:text-md font-extralight rounded-lg"
 };
 
 const Button = (props: ButtonProps) => {
