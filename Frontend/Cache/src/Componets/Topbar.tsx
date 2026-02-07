@@ -3,8 +3,6 @@ import { useState, useEffect, useContext } from "react"
 import { IoCreate } from "react-icons/io5"
 import { useNavigate } from "react-router-dom"
 import { IoLogOut } from "react-icons/io5"
-import { IoSearch } from "react-icons/io5"
-import axios from "axios"
 import UserContext from "../Global"
 interface input {
   title: String
@@ -14,41 +12,13 @@ interface input {
 const Topbar = (props: input) => {
   const compact = !!props.contracted
   const [, setIsDesktop] = useState(window.innerWidth >= 412);
-  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
-  const { setlogin, setToken, token } = useContext(UserContext)!;
+  const { setlogin, setToken} = useContext(UserContext)!;
   
   const LogOut = ()=>{
     setlogin(false);
     setToken("");
     navigate("/login");
-  }
-
-  const handleSearch = async () => {
-    if (!searchValue.trim()) {
-      alert("Please enter a search query");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/search`,
-        { query: searchValue },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      
-      if (response.data.Contents) {
-        console.log("Search results:", response.data.Contents);
-        alert(`Found ${response.data.Contents.length} matching notes`);
-        // You can add more logic here to display search results
-      }
-    } catch (error: any) {
-      alert("Error searching: " + (error.response?.data?.error || error.message));
-    }
   }
 
   useEffect(() => {
