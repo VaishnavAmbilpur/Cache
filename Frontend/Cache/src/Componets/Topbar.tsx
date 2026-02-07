@@ -8,9 +8,11 @@ import axios from "axios"
 import UserContext from "../Global"
 interface input {
   title: String
+  contracted?: boolean
 }
 
 const Topbar = (props: input) => {
+  const compact = !!props.contracted
   const [, setIsDesktop] = useState(window.innerWidth >= 412);
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
@@ -55,47 +57,33 @@ const Topbar = (props: input) => {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  const containerClass = compact
+    ? 'backdrop-blur-2xl ml-5 flex justify-between gap-x-6 p-2 w-auto max-h-12 items-center text-sm font-roboto lg:w-[1290px]'
+    : 'backdrop-blur-2xl ml-5 flex justify-between gap-x-36 p-4 w-auto max-h-16 items-center text-xl font-roboto lg:w-[1290px]'
+
   return (
-    <div className='backdrop-blur-2xl ml-5 flex justify-between gap-x-36 p-4 w-auto max-h-16 items-center text-xl font-roboto lg:w-[1290px] '>
-        <div className="text-md font-bold md:text-2xl text-white">
-            {props.title}
-        </div>
-        <div className="flex items-center gap-x-2 font-roboto">
-          <div className="flex items-center gap-x-2 border border-white rounded-lg px-4 py-2 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300 shadow-lg">
-            <IoSearch className="text-white text-lg cursor-pointer" />
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              className="bg-transparent text-white placeholder-gray-300 outline-none flex-1 text-sm"
-            />
-          </div>
-          <Button
-            varient="primary"
-            size="sm"
-            text="Search"
-            onClick={handleSearch}
-          />
-        </div>
-        <div className="flex justify-between gap-x-2 font-roboto">
-          <Button
-            varient="primary"
-            size="responsive"
-            text="Logout"
-            startIcon={<IoLogOut />}
-            onClick={() => {LogOut()}}
-          />
-          <Button
-            varient="primary"
-            size="responsive"
-            text="Create"
-            startIcon={<IoCreate />}
-            onClick={() => navigate("/create")}
-          />
-        </div>
-        
-       
+    <div className={containerClass}>
+      <div className={compact ? "text-sm font-bold text-white" : "text-md font-bold md:text-2xl text-white"}>
+        {props.title}
+      </div>
+
+      <div className={compact ? "flex justify-between gap-x-1 font-roboto items-center" : "flex justify-between gap-x-2 font-roboto"}>
+        <Button
+          varient="primary"
+          size="responsive"
+          text="Logout"
+          startIcon={<IoLogOut />}
+          onClick={() => {LogOut()}}
+        />
+        <Button
+          varient="primary"
+          size="responsive"
+          text="Create"
+          startIcon={<IoCreate />}
+          onClick={() => navigate("/create")}
+        />
+      </div>
+
     </div>
   )
 }

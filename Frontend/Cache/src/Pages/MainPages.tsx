@@ -16,7 +16,8 @@ const MainPages = (props: input) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const { login} = useContext(UserContext) as { login: boolean; setlogin: React.Dispatch<React.SetStateAction<boolean>> };
   const navigate = useNavigate();
-
+  
+  const [contracted, setContracted] = useState(false)
   const navRef = useRef<HTMLDivElement>(null);
   const topbarRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -69,8 +70,8 @@ return (
       <NavBar hidden={!isMobile} />
       <NavBarMobile hidden={isMobile} />
     </div>
-     <div ref={topbarRef} className="fixed top-0 right-2 z-40">
-        <Topbar title={props.title} />
+     <div ref={topbarRef} className="ml-1 fixed top-0 right-2 z-40">
+        <Topbar title={props.title} contracted={contracted} />
       </div>
     <div ref={contentRef} className="flex-1 flex flex-col ml-16 md:ml-56">
      
