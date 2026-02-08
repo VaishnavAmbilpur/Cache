@@ -13,7 +13,6 @@ Each user gets a private workspace where links are cached and categorized for qu
 - Add and delete cached links
 - Tag-based categorization
 - Retrieve links by tags
-- Shareable links with controlled access
 - Backend input validation
 - Modular and scalable architecture
 
@@ -40,33 +39,57 @@ Each user gets a private workspace where links are cached and categorized for qu
 ## Project Structure
 
 PROJECT-CACHE
+│
 ├── Backend
-│ ├── dist
-│ ├── src
-│ │ ├── Middleware
-│ │ ├── Routes
-│ │ ├── Z-validation
-│ │ ├── Config.ts
-│ │ ├── db.ts
-│ │ ├── Routes.ts
-│ │ └── server.ts
-│ ├── .env
+│ ├── dist/ # Compiled JavaScript output
+│ ├── src/
+│ │ ├── Middleware/ # Authentication & request middleware
+│ │ ├── Routes/ # API route handlers
+│ │ │ ├── AddContent.ts
+│ │ │ ├── AddTags.ts
+│ │ │ ├── DeleteContent.ts
+│ │ │ ├── GetContent.ts
+│ │ │ ├── GetContentByTags.ts
+│ │ │ ├── GetContentOfShareLink.ts
+│ │ │ ├── Login.ts
+│ │ │ ├── Logout.ts
+│ │ │ ├── SearchContent.ts
+│ │ │ └── Signup.ts
+│ │ ├── Z-validation/ # Zod validation schemas
+│ │ │ └── ValidationObjects.ts
+│ │ ├── Config.ts # App configuration
+│ │ ├── db.ts # Database connection
+│ │ ├── Routes.ts # Route aggregator
+│ │ └── server.ts # Server entry point
+│ ├── .env # Environment variables
 │ ├── package.json
-│ └── tsconfig.json
+│ ├── tsconfig.json
+│ └── tsconfig.tsbuildinfo
 │
 ├── Frontend/Cache
-│ ├── src
-│ │ ├── assets
-│ │ ├── Components
-│ │ ├── Pages
-│ │ ├── Ui-Components
+│ ├── public/ # Static public files
+│ ├── src/
+│ │ ├── assets/ # Images and static assets
+│ │ ├── Components/ # Reusable components
+│ │ │ ├── Login.tsx
+│ │ │ ├── Signup.tsx
+│ │ │ ├── NavBar.tsx
+│ │ │ ├── NavBarMobile.tsx
+│ │ │ └── Topbar.tsx
+│ │ ├── Pages/ # Application pages
+│ │ │ ├── Create.tsx
+│ │ │ └── MainPages.tsx
+│ │ ├── Ui-Components/ # Shared UI elements
 │ │ ├── App.tsx
-│ │ └── main.tsx
-│ ├── public
-│ ├── .env.local
+│ │ ├── main.tsx
+│ │ └── index.css
+│ ├── .env.local # Frontend environment variables
 │ ├── package.json
-│ └── vite.config.ts
+│ ├── vite.config.ts
+│ ├── tailwind.config.js
+│ └── tsconfig.json
 │
+├── .gitignore
 └── README.md
 
 # Authentication Flow
