@@ -38,59 +38,54 @@ Each user gets a private workspace where links are cached and categorized for qu
 
 ## Project Structure
 
-PROJECT-CACHE
-│
-├── Backend
-│ ├── dist/ # Compiled JavaScript output
-│ ├── src/
-│ │ ├── Middleware/ # Authentication & request middleware
-│ │ ├── Routes/ # API route handlers
-│ │ │ ├── AddContent.ts
-│ │ │ ├── AddTags.ts
-│ │ │ ├── DeleteContent.ts
-│ │ │ ├── GetContent.ts
-│ │ │ ├── GetContentByTags.ts
-│ │ │ ├── GetContentOfShareLink.ts
-│ │ │ ├── Login.ts
-│ │ │ ├── Logout.ts
-│ │ │ ├── SearchContent.ts
-│ │ │ └── Signup.ts
-│ │ ├── Z-validation/ # Zod validation schemas
-│ │ │ └── ValidationObjects.ts
-│ │ ├── Config.ts # App configuration
-│ │ ├── db.ts # Database connection
-│ │ ├── Routes.ts # Route aggregator
-│ │ └── server.ts # Server entry point
-│ ├── .env # Environment variables
-│ ├── package.json
-│ ├── tsconfig.json
-│ └── tsconfig.tsbuildinfo
-│
-├── Frontend/Cache
-│ ├── public/ # Static public files
-│ ├── src/
-│ │ ├── assets/ # Images and static assets
-│ │ ├── Components/ # Reusable components
-│ │ │ ├── Login.tsx
-│ │ │ ├── Signup.tsx
-│ │ │ ├── NavBar.tsx
-│ │ │ ├── NavBarMobile.tsx
-│ │ │ └── Topbar.tsx
-│ │ ├── Pages/ # Application pages
-│ │ │ ├── Create.tsx
-│ │ │ └── MainPages.tsx
-│ │ ├── Ui-Components/ # Shared UI elements
-│ │ ├── App.tsx
-│ │ ├── main.tsx
-│ │ └── index.css
-│ ├── .env.local # Frontend environment variables
-│ ├── package.json
-│ ├── vite.config.ts
-│ ├── tailwind.config.js
-│ └── tsconfig.json
-│
-├── .gitignore
-└── README.md
+Backend/
+├── dist/                    # Compiled JavaScript output
+├── src/                    # TypeScript source files
+│   ├── Middleware/         # Express middleware functions
+│   ├── Routes/            # API route handlers
+│   │   ├── AddContent.ts
+│   │   ├── AddTags.ts
+│   │   ├── DeleteContent.ts
+│   │   ├── GetContent.ts
+│   │   ├── GetContentByTags.ts
+│   │   ├── GetContentOfShareLink.ts
+│   │   ├── Login.ts
+│   │   ├── Logout.ts
+│   │   ├── SearchContent.ts
+│   │   └── Signup.ts
+│   ├── Z-validation/      # Input validation schemas
+│   │   └── ValidationObjects.ts
+│   ├── Config.ts          # Application configuration
+│   ├── db.ts             # Database connection and models
+│   ├── Routes.ts         # Route definitions
+│   └── server.ts         # Express server setup
+├── .env                  # Environment variables
+├── package.json         # Backend dependencies
+├── tsconfig.json       # TypeScript configuration
+└── tsconfig.tsbuildinfo # TypeScript build info
+
+Frontend/Cache/
+├── public/              # Static assets
+├── src/
+│   ├── assets/         # Images, fonts, etc.
+│   ├── Components/     # Reusable React components
+│   │   ├── Login.tsx
+│   │   ├── Signup.tsx
+│   │   ├── NavBar.tsx
+│   │   ├── NavBarMobile.tsx
+│   │   └── Topbar.tsx
+│   ├── Pages/         # Page-level components
+│   │   ├── Create.tsx
+│   │   └── MainPages.tsx
+│   ├── Ui-Components/ # UI-specific components
+│   ├── App.tsx        # Main application component
+│   ├── main.tsx       # Application entry point
+│   └── index.css      # Global styles
+├── .env.local         # Frontend environment variables
+├── package.json      # Frontend dependencies
+├── vite.config.ts    # Vite configuration
+├── tailwind.config.js # Tailwind CSS configuration
+└── tsconfig.json    # TypeScript configuration
 
 # Authentication Flow
 
