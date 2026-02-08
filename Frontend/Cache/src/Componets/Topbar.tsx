@@ -3,8 +3,6 @@ import { useState, useEffect, useContext } from "react"
 import { IoCreate } from "react-icons/io5"
 import { useNavigate } from "react-router-dom"
 import { IoLogOut } from "react-icons/io5"
-import { IoSearch } from "react-icons/io5"
-import axios from "axios"
 import UserContext from "../Global"
 interface input {
   title: String
@@ -12,9 +10,8 @@ interface input {
 
 const Topbar = (props: input) => {
   const [, setIsDesktop] = useState(window.innerWidth >= 412);
-  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
-  const { setlogin, setToken, token } = useContext(UserContext)!;
+  const { setlogin, setToken} = useContext(UserContext)!;
   
   const LogOut = ()=>{
     setlogin(false);
